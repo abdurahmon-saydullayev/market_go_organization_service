@@ -1,0 +1,4 @@
+DROP TABLE IF EXISTS "filial";
+DROP TABLE IF EXISTS "magazin";
+DROP TABLE IF EXISTS "staff";
+DROP TABLE IF EXISTS "provider";

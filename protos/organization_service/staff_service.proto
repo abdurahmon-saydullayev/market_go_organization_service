@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package organization_service;
+
+option go_package = "genproto/organization_service";
+import "staff.proto";
+import "google/protobuf/empty.proto";
+
+service StaffService {
+    rpc Create (CreateStaff) returns (Staff);
+    rpc GetByID (StaffPK) returns (Staff);
+    rpc GetList(GetListStaffRequest) returns (GetListStaffResponse);
+    rpc Update(UpdateStaff) returns (Staff);
+    rpc UpdatePatch(UpdatePatchStaff) returns (Staff);
+    rpc Delete(StaffPK) returns (google.protobuf.Empty);
+}

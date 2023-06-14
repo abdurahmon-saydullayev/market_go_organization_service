@@ -1,0 +1,42 @@
+CREATE TABLE IF NOT EXISTS "filial"(
+    id UUID PRIMARY KEY,
+    filial_code VARCHAR(50 ) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    phone VARCHAR(13) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS "magazin"(
+    id UUID PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    filial_id UUD NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    FOREIGN KEY (filial_id) REFERENCES filial (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "staff"(
+    id UUID PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone VARCHAR(13) NOT NULL,
+    login VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    staff_type VARCHAR(50) NOT NULL,
+    magazin_id UUID NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    FOREIGN KEY (magazin_id) REFERENCES magazin (id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS "provider" (
+    id UUID PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    phone VARCHAR(13) NOT NULL,
+    --0 free, -- 1 working
+    status SMALLINT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP
+);

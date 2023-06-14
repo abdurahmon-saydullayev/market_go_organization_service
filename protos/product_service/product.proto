@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+package product_service;
+
+option go_package = "genproto/product_service";

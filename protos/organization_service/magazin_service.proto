@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package organization_service;
+
+option go_package = "genproto/organization_service";
+import "magazin.proto";
+import "google/protobuf/empty.proto";
+
+service MagazinService {
+    rpc Create (CreateMagazin) returns (Magazin);
+    rpc GetByID (MagazinPK) returns (Magazin);
+    rpc GetList(GetListMagazinRequest) returns (GetListMagazinResponse);
+    rpc Update(UpdateMagazin) returns (Magazin);
+    rpc UpdatePatch(UpdatePatchMagazin) returns (Magazin);
+    rpc Delete(MagazinPK) returns (google.protobuf.Empty);
+}

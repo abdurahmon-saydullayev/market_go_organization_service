@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package organization_service;
+
+option go_package = "genproto/organization_service";
+import "provider.proto";
+import "google/protobuf/empty.proto";
+
+service ProviderService {
+    rpc Create (CreateProvider) returns (Provider);
+    rpc GetByID (ProviderPK) returns (Provider);
+    rpc GetList(GetListProviderRequest) returns (GetListProviderResponse);
+    rpc Update(UpdateProvider) returns (Provider);
+    rpc UpdatePatch(UpdatePatchProvider) returns (Provider);
+    rpc Delete(ProviderPK) returns (google.protobuf.Empty);
+}

@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package organization_service;
+
+option go_package = "genproto/organization_service";
+import "filial.proto";
+import "google/protobuf/empty.proto";
+
+service FilialService {
+    rpc Create (CreateFilial) returns (Filial);
+    rpc GetByID (FilialPK) returns (Filial);
+    rpc GetList(GetListFilialRequest) returns (GetListFilialResponse);
+    rpc Update(UpdateFilial) returns (Filial);
+    rpc UpdatePatch(UpdatePatchFilial) returns (Filial);
+    rpc Delete(FilialPK) returns (google.protobuf.Empty);
+}
