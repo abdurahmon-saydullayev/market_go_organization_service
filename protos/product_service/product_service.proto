@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package product_service;
+
+option go_package = "genproto/product_service";
+import "product.proto";
+import "google/protobuf/empty.proto";
+
+service ProductService {
+    rpc Create (CreateProduct) returns (Product);
+    rpc GetByID (ProductPK) returns (Product);
+    rpc GetList(GetListProductRequest) returns (GetListProductResponse);
+    rpc Update(UpdateProduct) returns (Product);
+    rpc UpdatePatch(UpdatePatchProduct) returns (Product);
+    rpc Delete(ProductPK) returns (google.protobuf.Empty);
+}

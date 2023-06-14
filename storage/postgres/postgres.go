@@ -12,6 +12,7 @@ import (
 type Store struct {
 	db     *pgxpool.Pool
 	filial storage.FilialRepoI
+	magazin storage.MagazinRepoI
 }
 
 func NewPostgres(ctx context.Context, cfg config.Config) (storage.StorageI, error) {
@@ -37,6 +38,7 @@ func NewPostgres(ctx context.Context, cfg config.Config) (storage.StorageI, erro
 	return &Store{
 		db:     pool,
 		filial: NewFilialRepo(pool),
+		magazin: NewMagazinRepo(pool),
 	}, nil
 }
 
@@ -49,4 +51,11 @@ func (s *Store) Filial() storage.FilialRepoI {
 		s.filial = NewFilialRepo(s.db)
 	}
 	return s.filial
+}
+
+func (s *Store) Magazin() storage.MagazinRepoI {
+	if s.magazin == nil {
+		s.magazin = NewMagazinRepo(s.db)
+	}
+	return s.magazin
 }

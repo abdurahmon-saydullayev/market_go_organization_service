@@ -9,7 +9,7 @@ import (
 type StorageI interface {
 	CloseDB()
 	Filial() FilialRepoI
-	// Magazin() MagazinRepoI
+	Magazin() MagazinRepoI
 	// Provider() ProviderRepoI
 	// Staff() StaffRepoI
 }

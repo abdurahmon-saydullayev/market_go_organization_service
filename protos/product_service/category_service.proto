@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package product_service;
+
+option go_package = "genproto/product_service";
+import "category.proto";
+import "google/protobuf/empty.proto";
+
+service CategoryService {
+    rpc Create (CreateCategory) returns (Category);
+    rpc GetByID (CategoryPK) returns (Category);
+    rpc GetList(GetListCategoryRequest) returns (GetListCategoryResponse);
+    rpc Update(UpdateCategory) returns (Category);
+    rpc UpdatePatch(UpdatePatchCategory) returns (Category);
+    rpc Delete(CategoryPK) returns (google.protobuf.Empty);
+}

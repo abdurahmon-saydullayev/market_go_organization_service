@@ -3,3 +3,43 @@ syntax = "proto3";
 package product_service;
 
 option go_package = "genproto/product_service";
+import "google/protobuf/struct.proto";
+
+message Category {
+    string id = 1;
+    string name = 2;
+    string parent = 3;
+    string created_at = 4;
+    string updated_at = 5;
+}
+
+message CreateCategory {
+    string name = 1;
+    string parent = 2;
+}
+
+message UpdateCategory {
+    string id = 1;
+    string name = 2;
+    string parent = 3;
+}
+
+message UpdatePatchCategory{ 
+    string id = 1;
+    google.protobuf.Struct fields = 2;
+}
+
+message GetListCategoryRequest{
+    int64 offset = 1;
+    int64 limit = 2;
+    string search = 3;
+}
+
+message GetListCategoryResponse {
+    int64 count = 1;
+    repeated Category categorys = 2;
+}
+
+message CategoryPK{
+    string id = 1;
+}

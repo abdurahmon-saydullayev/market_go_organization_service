@@ -3,3 +3,52 @@ syntax = "proto3";
 package product_service;
 
 option go_package = "genproto/product_service";
+import "google/protobuf/struct.proto";
+
+message Product {
+    string id = 1;
+    string photo = 2;
+    string name = 3;
+    string category_id = 4;
+    string barcode = 5;
+    float price = 6;
+    string created_at = 7;
+    string updated_at = 8;
+}
+
+message CreateProduct {
+    string photo = 1;
+    string name = 2;
+    string category_id = 3;
+    string barcode = 4;
+    float price = 5;
+}
+
+message UpdateProduct {
+    string id = 1;
+    string photo = 2;
+    string name = 3;
+    string category_id = 4;
+    string barcode = 5;
+    float price = 6;
+}
+
+message UpdatePatchProduct{ 
+    string id = 1;
+    google.protobuf.Struct fields = 2;
+}
+
+message GetListProductRequest{
+    int64 offset = 1;
+    int64 limit = 2;
+    string search = 3;
+}
+
+message GetListProductResponse {
+    int64 count = 1;
+    repeated Product products = 2;
+}
+
+message ProductPK{
+    string id = 1;
+}
