@@ -33,7 +33,7 @@ func (c *magazinRepo) Create(ctx context.Context, req *organization_service.Crea
 			filial_id,
 			created_at,
 			updated_at
-		) VALUES ($1, $2, $3, $4, $5, NOW(), NOW())
+		) VALUES ($1, $2, $3, NOW(), NOW())
 	`
 
 	_, err = c.db.Exec(
@@ -107,6 +107,7 @@ func (c *magazinRepo) GetList(ctx context.Context, req *organization_service.Get
 
 	query = `
 	   SELECT 
+	   		COUNT(*) OVER(),
 		    m.id,
 		    m.name,
 		    f.id,
