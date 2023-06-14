@@ -16,10 +16,9 @@ message Filial{
 }
 
 message CreateFilial{
-    string filial_code = 1;
-    string name = 2;
-    string address = 3;
-    string phone = 4;
+    string name = 1;
+    string address = 2;
+    string phone = 3;
 }
 
 message UpdateFilial{

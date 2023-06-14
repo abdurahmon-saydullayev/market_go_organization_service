@@ -29,7 +29,7 @@ func (c *filialRepo) Create(ctx context.Context, req *organization_service.Creat
 	filial_code := helper.CombineFirstLetters(req.Name, "")
 
 	query := `
-		INSERT INTO "order" (
+		INSERT INTO "filial" (
 			id,
 			filial_code,
 			name,
@@ -120,20 +120,16 @@ func (c *filialRepo) GetList(ctx context.Context, req *organization_service.GetL
 	)
 
 	query = `
-		SELECT
-			COUNT(*) OVER(),
-			id,
-			filial_code,
-			name,
-			address,
-			phone,
-			created_at,
-			updated_at
-			FROM "filial"
-			WHERE id = $1
-			TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS'),
-			TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS')
-		FROM "order"
+	SELECT
+		COUNT(*) OVER(),
+		id,
+		filial_code,
+		name,
+		address,
+		phone,
+		TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI:SS'),
+		TO_CHAR(updated_at, 'YYYY-MM-DD HH24:MI:SS')
+	FROM "filial"
 	`
 	if len(req.GetSearch()) > 0 {
 		filter += " AND filial_code ILIKE '%' || '" + req.Search + "' || '%' "
@@ -168,6 +164,7 @@ func (c *filialRepo) GetList(ctx context.Context, req *organization_service.GetL
 		)
 
 		err := rows.Scan(
+			&resp.Count,
 			&id,
 			&filial_code,
 			&name,
