@@ -33,7 +33,7 @@ func (c *providerRepo) Create(ctx context.Context, req *organization_service.Cre
 			phone,
 			created_at,
 			updated_at
-		) VALUES ($1, $2, $3, $4, NOW(), NOW())
+		) VALUES ($1, $2, $3, NOW(), NOW())
 	`
 
 	_, err = c.db.Exec(
