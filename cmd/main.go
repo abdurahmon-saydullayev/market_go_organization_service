@@ -2,10 +2,12 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"net"
 	"organization_service/config"
 	"organization_service/grpc"
 	"organization_service/grpc/client"
+	"organization_service/pkg/helper"
 	"organization_service/pkg/logger"
 	"organization_service/storage/postgres"
 
@@ -14,6 +16,9 @@ import (
 
 func main() {
 	cfg := config.Load()
+
+	filial_id := helper.CombineFirstLetters("mega", "brand")
+	fmt.Println(filial_id)
 
 	loggerLevel := logger.LevelDebug
 

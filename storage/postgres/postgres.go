@@ -10,9 +10,11 @@ import (
 )
 
 type Store struct {
-	db     *pgxpool.Pool
-	filial storage.FilialRepoI
-	magazin storage.MagazinRepoI
+	db       *pgxpool.Pool
+	filial   storage.FilialRepoI
+	magazin  storage.MagazinRepoI
+	staff    storage.StaffRepoI
+	provider storage.ProviderRepoI
 }
 
 func NewPostgres(ctx context.Context, cfg config.Config) (storage.StorageI, error) {
@@ -36,9 +38,11 @@ func NewPostgres(ctx context.Context, cfg config.Config) (storage.StorageI, erro
 	}
 
 	return &Store{
-		db:     pool,
-		filial: NewFilialRepo(pool),
-		magazin: NewMagazinRepo(pool),
+		db:       pool,
+		filial:   NewFilialRepo(pool),
+		magazin:  NewMagazinRepo(pool),
+		staff:    NewStaffRepo(pool),
+		provider: NewProviderRepo(pool),
 	}, nil
 }
 
@@ -58,4 +62,18 @@ func (s *Store) Magazin() storage.MagazinRepoI {
 		s.magazin = NewMagazinRepo(s.db)
 	}
 	return s.magazin
+}
+
+func (s *Store) Staff() storage.StaffRepoI {
+	if s.staff == nil {
+		s.staff = NewStaffRepo(s.db)
+	}
+	return s.staff
+}
+
+func (s *Store) Provider() storage.ProviderRepoI {
+	if s.provider == nil {
+		s.provider = NewProviderRepo(s.db)
+	}
+	return s.provider
 }

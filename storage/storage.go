@@ -10,8 +10,8 @@ type StorageI interface {
 	CloseDB()
 	Filial() FilialRepoI
 	Magazin() MagazinRepoI
-	// Provider() ProviderRepoI
-	// Staff() StaffRepoI
+	Staff() StaffRepoI
+	Provider() ProviderRepoI
 }
 
 type FilialRepoI interface {
