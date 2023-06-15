@@ -27,7 +27,7 @@ func (c *providerRepo) Create(ctx context.Context, req *organization_service.Cre
 	id := uuid.New().String()
 
 	query := `
-		INSERT INTO "Provider" (
+		INSERT INTO "provider" (
 			id,
 			name,
 			phone,
