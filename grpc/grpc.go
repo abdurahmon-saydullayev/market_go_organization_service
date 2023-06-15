@@ -18,6 +18,8 @@ func SetUpServer(cfg config.Config, log logger.LoggerI, strg storage.StorageI, s
 
 	organization_service.RegisterFilialServiceServer(grpcServer, service.NewFilialService(cfg, log, strg, srvc))
 	organization_service.RegisterMagazinServiceServer(grpcServer, service.NewMagazinService(cfg, log, strg, srvc))
+	organization_service.RegisterProviderServiceServer(grpcServer, service.NewProviderService(cfg, log, strg, srvc))
+	organization_service.RegisterStaffServiceServer(grpcServer, service.NewStaffService(cfg, log, strg, srvc))
 
 	reflection.Register(grpcServer)
 	return
