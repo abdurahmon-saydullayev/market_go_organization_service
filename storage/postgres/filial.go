@@ -26,7 +26,7 @@ func NewFilialRepo(db *pgxpool.Pool) *filialRepo {
 func (c *filialRepo) Create(ctx context.Context, req *organization_service.CreateFilial) (resp *organization_service.FilialPK, err error) {
 	id := uuid.New().String()
 
-	filial_code := helper.CombineFirstLetters(req.Name, "")
+	filial_code := helper.CombineFirstLetters(req.Name)
 
 	query := `
 		INSERT INTO "filial" (

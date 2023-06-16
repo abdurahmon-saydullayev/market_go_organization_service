@@ -128,21 +128,18 @@ func NewNullBool(s bool) sql.NullBool {
 	}
 }
 
-// func extractFirstLetters(s string) string {
-// 	if len(s) >= 2 {
-// 		return s[:2]
-// 	}
-// 	return s
-// }
 
-func CombineFirstLetters(str1, str2 string) string {
-	if str2 == "" {
-		fl := string(str1[:2])
+func CombineFirstLetters(str string) string {
 
-		return strings.ToUpper(fl)
+	words := strings.Split(str, " ")
+
+	if len(words) < 2 {
+		return ""
 	}
 
-	firstLetter1 := string(str1[0])
-	firstLetter2 := string(str2[0])
-	return strings.ToUpper(firstLetter1 + firstLetter2)
+	firstInitial := string(words[0][0])
+	secondInitial := string(words[1][0])
+	initials := firstInitial + secondInitial
+
+	return strings.ToUpper(initials)
 }
